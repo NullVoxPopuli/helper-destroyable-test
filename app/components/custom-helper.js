@@ -23,31 +23,15 @@ class CustomManager {
   }
 
   createHelper(Class) {
-    let owner = this.owner;
-
-    let instance;
-
-    let cache = createCache(() => {
-      if (instance === undefined) {
-        instance = new Class(owner);
-
-        associateDestroyableChild(cache, instance);
-      }
-
-      return instance;
-    });
-
-    return cache;
+    return new Class(this.owner);
   }
 
-  getValue(cache) {
-    let instance = getValue(cache);
-
+  getValue(instance) {
     return instance;
   }
 
-  getDestroyable(cache) {
-    return cache;
+  getDestroyable(instance) {
+    return instance;
   }
 }
 
