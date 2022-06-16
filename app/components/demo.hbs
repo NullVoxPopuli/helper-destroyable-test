@@ -3,8 +3,8 @@ show: {{this.show}}<br>
 <br>-----<br>
 
 {{#if this.show}}
-  {{#let (this.myHelper) as |instance|}}
-    {{instance.aProperty}}
+  {{#let (this.invokeHelper this this.myHelper) as |helper|}}
+    {{get (this.getValue helper) 'aProperty'}}
   {{/let}}
 {{/if}}
 

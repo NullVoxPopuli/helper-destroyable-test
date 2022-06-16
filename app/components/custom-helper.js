@@ -3,6 +3,7 @@ import { setOwner } from '@ember/application';
 import { associateDestroyableChild } from '@ember/destroyable';
 import {
   capabilities as helperCapabilities,
+  invokeHelper,
   setHelperManager,
 } from '@ember/helper';
 
@@ -23,15 +24,31 @@ class CustomManager {
   }
 
   createHelper(Class) {
-    return new Class(this.owner);
+    let owner = this.owner;
+
+    let instance;
+
+    let cache = createCache(() => {
+      if (instance === undefined) {
+        instance = new Class(owner);
+
+        associateDestroyableChild(cache, instance);
+      }
+
+      return instance;
+    });
+
+    return cache;
   }
 
-  getValue(instance) {
+  getValue(cache) {
+    let instance = getValue(cache);
+
     return instance;
   }
 
-  getDestroyable(instance) {
-    return instance;
+  getDestroyable(cache) {
+    return cache;
   }
 }
 

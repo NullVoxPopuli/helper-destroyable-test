@@ -2,6 +2,9 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { registerDestructor } from '@ember/destroyable';
 
+import { invokeHelper } from '@ember/helper';
+import { getValue } from '@glimmer/tracking/primitives/cache';
+
 import { CustomHelper } from './custom-helper';
 
 class MyHelper extends CustomHelper {
@@ -11,13 +14,16 @@ class MyHelper extends CustomHelper {
     super(owner);
 
     console.log('creating');
-    registerDestructor(() => {
+    registerDestructor(this, () => {
       console.log('destroying');
     });
   }
 }
 
 export default class DemoComponent extends Component {
+  getValue = getValue;
+  invokeHelper = invokeHelper;
+
   myHelper = MyHelper;
 
   @tracked show = true;
