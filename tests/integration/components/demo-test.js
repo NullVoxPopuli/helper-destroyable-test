@@ -12,15 +12,6 @@ module('Integration | Component | demo', function (hooks) {
 
     await render(hbs`<Demo />`);
 
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      <Demo>
-        template block text
-      </Demo>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).containsText('oh my');
   });
 });
