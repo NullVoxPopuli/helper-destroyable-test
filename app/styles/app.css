@@ -1,0 +1,9 @@
+.border {
+  border: 1px solid gray;
+
+  margin: 1rem;
+}
+
+.border button {
+  margin: 1rem;
+}

@@ -1,15 +1,6 @@
-show: {{this.show}}<br>
 
-<br>-----<br>
-
-{{#if this.show}}
+<Toggler @label="in component">
   {{#let (this.invokeHelper this this.myHelper) as |helper|}}
     {{get (this.getValue helper) 'aProperty'}}
   {{/let}}
-{{/if}}
-
-<br>-----<br>
-
-<button {{on 'click' this.toggle}}>
-  toggle
-</button>
+</Toggler>

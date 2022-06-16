@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { registerDestructor } from '@ember/destroyable';
 
 import { invokeHelper } from '@ember/helper';
@@ -25,8 +24,4 @@ export default class DemoComponent extends Component {
   invokeHelper = invokeHelper;
 
   myHelper = MyHelper;
-
-  @tracked show = true;
-
-  toggle = () => (this.show = !this.show);
 }
